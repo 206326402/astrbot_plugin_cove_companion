@@ -21,18 +21,21 @@ cp "$ROOT_DIR/service/package.json" "$ROOT_DIR/service/package-lock.json" "$ROOT
 cd "$INSTALL_ROOT"; npm ci --omit=optional; npm run build
 if [[ ! -f "$INSTALL_ROOT/.env" ]]; then
   cat > "$INSTALL_ROOT/.env" <<EOF
-COVE_HOST=127.0.0.1
-COVE_PORT=${PORT}
-COVE_DATA_DIR=${DATA_DIR}
-COVE_TOKEN_FILE=${DATA_DIR}/cove-bridge-token
+BIND_HOST=127.0.0.1
+PORT=${PORT}
+HOST_MODE=astrbot
+ASTROBOT_COVE_DB=${DATA_DIR}/astrbot-cove.sqlite3
+ASTROBOT_BRIDGE_TOKEN_FILE=${DATA_DIR}/cove-bridge-token
+COVE_CREDENTIAL_FILE=${DATA_DIR}/private/credentials.enc
+COVE_CREDENTIAL_KEY_FILE=${DATA_DIR}/keys/credentials.key
 EOF
   chmod 600 "$INSTALL_ROOT/.env"
 fi
-if [[ ! -f "$DATA_DIR/cove-bridge-token" ]]; then umask 077; : > "$DATA_DIR/cove-bridge-token"; echo "已创建空令牌文件：$DATA_DIR/cove-bridge-token"; fi
+# The service creates a random 256-bit token on first start. Do not pre-create an empty file.
 UNIT_DIR="${XDG_CONFIG_HOME:-${HOME}/.config}/systemd/user"
 if command -v systemctl >/dev/null && systemctl --user status >/dev/null 2>&1; then
   mkdir -p "$UNIT_DIR"
   sed -e "s#@COVE_INSTALL_ROOT@#${INSTALL_ROOT}#g" -e "s#@COVE_DATA_DIR@#${DATA_DIR}#g" "$ROOT_DIR/service/systemd/cove-companion.service" > "$UNIT_DIR/$SERVICE_NAME"
   systemctl --user daemon-reload; systemctl --user enable --now "$SERVICE_NAME"
 else echo "未检测到用户级 systemd；可手动运行：cd $INSTALL_ROOT && npm start"; fi
-echo "Cove 安装目录：$INSTALL_ROOT"; echo "数据目录：$DATA_DIR"; echo '下一步：在 AstrBot 页面完成配置向导，检查通过后手动开启自动功能。'
+echo "Cove 安装目录：$INSTALL_ROOT"; echo "数据目录：$DATA_DIR"; echo "AstrBot 插件的 Cove 令牌文件请填写：$DATA_DIR/cove-bridge-token"; echo '下一步：在 AstrBot 页面完成配置向导，检查通过后手动开启自动功能。'
