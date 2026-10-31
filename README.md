@@ -38,7 +38,7 @@ bash scripts/install-cove.sh
 bash scripts/check-cove.sh
 ```
 
-安装器检查 Node.js 22、npm 和权限，复制 `service/`、执行 `npm ci` 与构建，并创建用户级 systemd 服务。令牌文件默认位于 AstrBot 插件数据目录的 `cove-bridge-token`；已有令牌不会被覆盖。更新和卸载：
+安装器检查 Node.js 22、npm 和权限，复制 `service/`、执行 `npm ci` 与构建，并创建用户级 systemd 服务。服务令牌默认位于 `COVE_DATA_DIR/cove-bridge-token`（通常是 `~/.local/share/cove-companion-data/cove-bridge-token`）；把安装器最后打印的这个路径填入插件的 `cove_token_file`，已有令牌不会被覆盖。插件配置留空时才使用 AstrBot plugin_data 目录下的 `cove-bridge-token`。更新和卸载：
 
 ```bash
 bash scripts/update-cove.sh
