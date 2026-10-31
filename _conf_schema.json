@@ -1,0 +1,316 @@
+{
+  "enabled": {
+    "type": "bool",
+    "default": false,
+    "description": "总开关。首次安装保持关闭，完成配置与只读检查后再启用。"
+  },
+  "owner_umo": {
+    "type": "string",
+    "default": "",
+    "description": "主人真实 QQ 私聊会话，格式 aiocqhttp:FriendMessage:QQ号。"
+  },
+  "owner_netease_uid": {
+    "type": "string",
+    "default": "",
+    "description": "主人网易云账号 UID；用于邀请者校验、成员核对与来源归因。"
+  },
+  "cove_base_url": {
+    "type": "string",
+    "default": "http://127.0.0.1:8787",
+    "description": "本机 Cove 服务地址，浏览器不会直接访问它。"
+  },
+  "cove_token_file": {
+    "type": "string",
+    "default": "",
+    "description": "Cove Bearer 令牌文件，仅服务端读取；留空使用插件数据目录下的 cove-bridge-token。"
+  },
+  "db_path": {
+    "type": "string",
+    "default": "",
+    "description": "业务 SQLite 路径，留空使用 AstrBot plugin_data 目录。"
+  },
+  "provider_id": {
+    "type": "string",
+    "default": "",
+    "description": "跟随主会话模型；仅供兼容原配置。"
+  },
+  "fallback_provider_id": {
+    "type": "string",
+    "default": "",
+    "description": "备用聊天 Provider ID；留空时使用 AstrBot provider_settings.fallback_chat_models 的第一个可用项。"
+  },
+  "provider_retry_count": {
+    "type": "int",
+    "default": 1,
+    "min": 0,
+    "max": 3,
+    "description": "同一主 Provider 在无工具副作用的回合中额外重试次数。"
+  },
+  "autodj_enabled": {
+    "type": "bool",
+    "default": false,
+    "description": "有效邀请后是否开启自动推荐；首次安装默认关闭。"
+  },
+  "room_chat_enabled": {
+    "type": "bool",
+    "default": true,
+    "description": "有效邀请后默认开启网易云房间文字回应。"
+  },
+  "recommendation_interval_seconds": {
+    "type": "int",
+    "default": 600,
+    "min": 300,
+    "max": 3600,
+    "description": "自动推荐间隔。"
+  },
+  "first_recommendation_delay_seconds": {
+    "type": "int",
+    "default": 60,
+    "min": 10,
+    "max": 600,
+    "description": "房间就绪后首次推荐等待。"
+  },
+  "dedup_minutes": {
+    "type": "int",
+    "default": 120,
+    "min": 30,
+    "max": 720,
+    "description": "自动推荐去重窗口。"
+  },
+  "session_max_minutes": {
+    "type": "int",
+    "default": 0,
+    "min": 0,
+    "max": 720,
+    "description": "旧配置兼容字段；不触发自动退房。只有可靠连续暂停触发自动退房。"
+  },
+  "pending_recommendation_limit": {
+    "type": "int",
+    "default": 1,
+    "min": 1,
+    "max": 1,
+    "description": "每房间最多一个未完成自动推荐。"
+  },
+  "model_daily_budget": {
+    "type": "int",
+    "default": 200,
+    "min": 0,
+    "max": 2000,
+    "description": "旧版次数预算兼容字段；1.2 起不再限制请求，改用 token_daily_limit。"
+  },
+  "autodj_daily_budget": {
+    "type": "int",
+    "default": 40,
+    "min": 0,
+    "max": 500,
+    "description": "旧版次数预算兼容字段；1.2 起不再限制请求，改用 token_daily_limit。"
+  },
+  "autodj_hourly_limit": {
+    "type": "int",
+    "default": 6,
+    "min": 0,
+    "max": 20,
+    "description": "自动选歌每小时上限。"
+  },
+  "model_timeout_seconds": {
+    "type": "int",
+    "default": 30,
+    "min": 5,
+    "max": 60,
+    "description": "单次模型调用的硬超时。"
+  },
+  "chat_batch_wait_seconds": {
+    "type": "int",
+    "default": 2,
+    "min": 1,
+    "max": 5,
+    "description": "网易云房间连续消息合并等待。"
+  },
+  "chat_batch_max_wait_seconds": {
+    "type": "int",
+    "default": 5,
+    "min": 2,
+    "max": 10,
+    "description": "连续输入时最长合并等待。"
+  },
+  "reference_playlist_ids": {
+    "type": "string",
+    "default": "",
+    "description": "参考歌单 ID，逗号分隔；最多三个。"
+  },
+  "music_preferences": {
+    "type": "string",
+    "default": "",
+    "description": "已确认的音乐偏好，用分号或逗号分隔。"
+  },
+  "excluded_terms": {
+    "type": "string",
+    "default": "",
+    "description": "用户明确排除的词或风格。"
+  },
+  "reduced_motion": {
+    "type": "bool",
+    "default": false,
+    "description": "控制台默认减少动态效果。"
+  },
+  "default_panel_page": {
+    "type": "string",
+    "default": "home",
+    "options": [
+      "home",
+      "history",
+      "operations",
+      "health"
+    ],
+    "description": "控制台默认页签。"
+  },
+  "room_chat_daily_budget": {
+    "type": "int",
+    "default": 80,
+    "min": 0,
+    "max": 1000,
+    "description": "旧版次数预算兼容字段；1.2 起不再限制请求，改用 token_daily_limit。"
+  },
+  "proactive_daily_budget": {
+    "type": "int",
+    "default": 0,
+    "min": 0,
+    "max": 500,
+    "description": "兼容旧配置；主动闲聊已关闭，不使用此预算。"
+  },
+  "reserve_daily_budget": {
+    "type": "int",
+    "default": 40,
+    "min": 0,
+    "max": 500,
+    "description": "旧版次数预算兼容字段；1.2 起不再限制请求，改用 token_daily_limit。"
+  },
+  "agent_timeout_seconds": {
+    "type": "int",
+    "default": 60,
+    "min": 20,
+    "max": 180,
+    "description": "房间 Agent 单回合总超时。"
+  },
+  "agent_max_steps": {
+    "type": "int",
+    "default": 7,
+    "min": 2,
+    "max": 12,
+    "description": "房间 Agent 最大工具循环步数。"
+  },
+  "agent_context_bytes": {
+    "type": "int",
+    "default": 32000,
+    "min": 12000,
+    "max": 64000,
+    "description": "主 Agent 上下文 UTF-8 字节预算，人格优先保留。"
+  },
+  "qq_history_turns": {
+    "type": "int",
+    "default": 6,
+    "min": 0,
+    "max": 20,
+    "description": "房间 Agent 读取的最近 QQ 轮数。"
+  },
+  "room_history_messages": {
+    "type": "int",
+    "default": 10,
+    "min": 0,
+    "max": 30,
+    "description": "房间 Agent 读取的最近房间消息数。"
+  },
+  "room_chat_backlog_ttl_seconds": {
+    "type": "int",
+    "default": 300,
+    "min": 30,
+    "max": 3600,
+    "description": "断线重连时忽略的积压消息时限；在线消息不按该值丢弃。"
+  },
+  "retention_days": {
+    "type": "int",
+    "default": 30,
+    "min": 1,
+    "max": 365,
+    "description": "历史、操作、房间消息和诊断记录默认保留天数。"
+  },
+  "backup_keep": {
+    "type": "int",
+    "default": 7,
+    "min": 1,
+    "max": 60,
+    "description": "每日数据库备份保留份数。"
+  },
+  "player_stream_enabled": {
+    "type": "bool",
+    "default": true,
+    "description": "启用播放器 SSE 实时推送；不支持时前端自动回退轮询。"
+  },
+  "pause_end_seconds": {
+    "type": "int",
+    "default": 300,
+    "description": "持续可靠暂停多久后退出（秒）。恢复或失联清零。"
+  },
+  "owner_absence_seconds": {
+    "type": "int",
+    "default": 60,
+    "description": "旧配置兼容字段；不触发自动退房。只有可靠连续暂停触发自动退房。"
+  },
+  "trusted_private_origins": {
+    "type": "list",
+    "default": [],
+    "description": "受信私聊 UMO 白名单，每项独立校验平台实例和发送者。"
+  },
+  "invitation_enabled": {
+    "type": "bool",
+    "default": false,
+    "description": "只在有来源的新事件后评估分享歌曲与邀听；首次安装默认关闭。"
+  },
+  "exploration_rate": {
+    "type": "float",
+    "default": 0.15,
+    "description": "每次开放一首陌生歌探索位的概率，0–0.4；保守15%、平衡25%、主动35%。",
+    "max": 0.4
+  },
+  "same_category_limit": {
+    "type": "int",
+    "default": 3,
+    "description": "连续同类自动推荐上限。"
+  },
+  "diagnostic_progress_seconds": {
+    "type": "int",
+    "default": 0,
+    "description": "进度事件默认丢弃；诊断模式设为15秒合并。"
+  },
+  "disconnect_timeout_seconds": {
+    "type": "int",
+    "default": 120,
+    "min": 30,
+    "max": 3600,
+    "description": "旧配置兼容字段；不触发自动退房。只有可靠连续暂停触发自动退房。"
+  },
+  "meeting_timeout_seconds": {
+    "type": "int",
+    "default": 180,
+    "min": 45,
+    "max": 3600,
+    "description": "旧配置兼容字段；不触发自动退房。只有可靠连续暂停触发自动退房。"
+  },
+  "invitation_threshold": {
+    "type": "float",
+    "default": 0.75,
+    "description": "新事件邀听信号阈值，范围0–1。"
+  },
+  "token_daily_limit": {
+    "type": "int",
+    "default": 1000000,
+    "min": 1000,
+    "max": 100000000,
+    "description": "每日插件相关输入+输出 Token，上海时间零点重置；达到后停自动推歌和新介绍，聊天与手动控制仍可用。"
+  },
+  "persona_music_terms": {
+    "type": "list",
+    "default": [],
+    "description": "人格明确的音乐兴趣，仅作为 5% 的风格信号；也读取当前人格中明确写出的喜好。"
+  }
+}

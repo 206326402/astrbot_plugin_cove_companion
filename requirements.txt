@@ -1,0 +1,2 @@
+aiohttp>=3.8,<4
+opencc-python-reimplemented>=0.1.7,<0.2

@@ -1,0 +1,20 @@
+[Unit]
+Description=Cove Companion music bridge
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@COVE_INSTALL_ROOT@
+EnvironmentFile=-@COVE_INSTALL_ROOT@/.env
+ExecStart=/usr/bin/node @COVE_INSTALL_ROOT@/dist/src/server.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=@COVE_DATA_DIR@
+
+[Install]
+WantedBy=default.target
