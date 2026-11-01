@@ -12,5 +12,6 @@
 - 支持平台：`aiocqhttp`
 - AstrBot：`>=4.27.0`
 - 封面：仓库中的 `assets/market-cover.png`
+- 插件 Logo：根目录 `logo.png`，256×256；README 包含播放器和听歌手帐预览。
 
 提交前请在页面确认仓库为公开、`metadata.yaml` 位于根目录，并检查封面是否符合市场当前的图片规范。市场审核账号需要由仓库所有者在 AstrBot Cloud 完成登录和提交；本仓库不保存 AstrBot Cloud 的登录信息。

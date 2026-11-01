@@ -8,7 +8,7 @@ try:
 except Exception:
     Image = None
 ROOT = Path(__file__).resolve().parents[1]
-required = ["metadata.yaml", "main.py", "_conf_schema.json", "README.md", "LICENSE", "NOTICE.md", "assets/market-cover.png", "service/package.json", "scripts/install-cove.sh", "scripts/check-cove.sh"]
+required = ["metadata.yaml", "main.py", "_conf_schema.json", "README.md", "LICENSE", "NOTICE.md", "logo.png", "assets/market-cover.png", "assets/screenshots/player.png", "assets/screenshots/listening-journal.png", "service/package.json", "scripts/install-cove.sh", "scripts/check-cove.sh"]
 errors=[]
 for name in required:
     if not (ROOT/name).is_file(): errors.append(f"missing {name}")
@@ -19,6 +19,7 @@ def field(name):
 if field('name')!='astrbot_plugin_cove_companion': errors.append('metadata name mismatch')
 if field('version')!='1.4.0': errors.append('metadata version must be 1.4.0')
 if field('repo')!='https://github.com/206326402/astrbot_plugin_cove_companion': errors.append('metadata repo mismatch')
+if field('logo')!='logo.png': errors.append('metadata logo must reference root logo.png')
 try: json.loads((ROOT/'_conf_schema.json').read_text(encoding='utf-8-sig'))
 except Exception as exc: errors.append(f'config schema invalid: {exc}')
 if Image:
@@ -26,6 +27,10 @@ if Image:
         with Image.open(ROOT/'assets/market-cover.png') as im:
             if im.size != (1024,1024): errors.append(f'cover size is {im.size}, expected 1024x1024')
     except Exception as exc: errors.append(f'cover unreadable: {exc}')
+    try:
+        with Image.open(ROOT/'logo.png') as im:
+            if im.size != (256,256): errors.append(f'logo size is {im.size}, expected 256x256')
+    except Exception as exc: errors.append(f'logo unreadable: {exc}')
 for p in ROOT.rglob('*'):
     if not p.is_file(): continue
     rel=p.relative_to(ROOT).as_posix().lower()
