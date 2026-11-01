@@ -2,7 +2,7 @@ name: astrbot_plugin_cove_companion
 display_name: 我会和你一起听
 short_desc: 这是一个让 AI 陪你听网易云的插件，支持可靠回执、动态推荐、歌曲介绍和黑胶唱片室。
 desc: 这是一个让 AI 陪你听网易云的插件：它能和你进入同一个房间，记住你的听歌口味，在合适的时候推荐下一首并解释原因，还提供可核对的播放回执、听歌手帐和黑胶唱片室。
-version: 1.4.0
+version: 1.4.1
 author: QQbot维护
 license: MIT
 repo: "https://github.com/206326402/astrbot_plugin_cove_companion"

@@ -86,7 +86,7 @@ from .core.store import CompanionStore
 from .core.text import age_seconds, clean, compact, extract_invite, parse_music_command
 
 NAME = "astrbot_plugin_cove_companion"
-VERSION = "1.4.0"
+VERSION = "1.4.1"
 DESCRIPTION = "单人陪听与深色唱片室：可靠状态、动态选歌和事件邀听"
 
 

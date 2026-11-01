@@ -3,7 +3,7 @@
 from pathlib import Path
 import shutil, zipfile
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'dist'/'astrbot_plugin_cove_companion-1.4.0.zip'
+OUT=ROOT/'dist'/'astrbot_plugin_cove_companion-1.4.1.zip'
 OUT.parent.mkdir(exist_ok=True)
 if OUT.exists(): OUT.unlink()
 blocked=('node_modules','__pycache__','.git','dist','data')

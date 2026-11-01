@@ -17,7 +17,7 @@ def field(name):
     m=re.search(rf'(?m)^{re.escape(name)}:\s*["\']?([^"\'\r\n]+)',meta)
     return m.group(1).strip() if m else ''
 if field('name')!='astrbot_plugin_cove_companion': errors.append('metadata name mismatch')
-if field('version')!='1.4.0': errors.append('metadata version must be 1.4.0')
+if field('version')!='1.4.1': errors.append('metadata version must be 1.4.1')
 if field('repo')!='https://github.com/206326402/astrbot_plugin_cove_companion': errors.append('metadata repo mismatch')
 if field('logo')!='logo.png': errors.append('metadata logo must reference root logo.png')
 try: json.loads((ROOT/'_conf_schema.json').read_text(encoding='utf-8-sig'))

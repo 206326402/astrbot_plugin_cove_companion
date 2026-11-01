@@ -5,7 +5,7 @@
 填写以下信息：
 
 - 仓库：`https://github.com/206326402/astrbot_plugin_cove_companion`
-- 版本：`1.4.0`
+- 版本：`1.4.1`
 - 名称：《我会和你一起听》
 - 分类：`entertainment`
 - 标签：`music`, `netease`, `companion`, `recommendation`
